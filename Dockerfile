@@ -2,31 +2,29 @@ FROM python:3.14-slim
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
+ENV VIRTUAL_ENV=/app/.venv
+ENV PATH="/app/.venv/bin:/root/.local/bin:$PATH"
 
 WORKDIR /app
 
-# Install system deps
 RUN apt-get update && apt-get install -y \
-    curl nodejs npm \
+    curl \
+    build-essential \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Enable pnpm
-RUN corepack enable
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && corepack enable
 
-# Install uv
 RUN pip install uv
 
-# Copy project
 COPY . .
 
-# Install frontend deps & build
-RUN pnpm install --frozen-lockfile
-RUN pnpm build
+RUN uv venv && uv sync --frozen --no-dev
 
-# Install python deps
-RUN uv sync --frozen --no-dev
+RUN pnpm install --frozen-lockfile && pnpm build
 
-# Collect static
 RUN uv run python manage.py collectstatic --noinput
 
-CMD uv run gunicorn monobit.wsgi:application --bind 0.0.0.0:$PORT
+CMD sh -c "uv run python manage.py migrate && uv run gunicorn monobit.wsgi:application --bind 0.0.0.0:$PORT"
