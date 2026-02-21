@@ -1,14 +1,27 @@
-import './assets/main.css'
+import '@/assets/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-
 import App from './App.vue'
 import router from './router'
 
-const app = createApp(App)
+import { useConfigStore } from '@/stores/config'
+import { useAuthStore } from '@/stores/auth'
 
-app.use(createPinia())
-app.use(router)
+async function bootstrap() {
+  const app = createApp(App)
+  const pinia = createPinia()
 
-app.mount('#app')
+  app.use(pinia)
+  app.use(router)
+
+  const configStore = useConfigStore()
+  const authStore = useAuthStore()
+
+  // Run in parallel for speed
+  await Promise.all([configStore.load()])
+
+  app.mount('#app')
+}
+
+bootstrap()
