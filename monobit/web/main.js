@@ -2,8 +2,10 @@ import '@/assets/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import App from './App.vue'
-import router from './router'
+import Antd from 'ant-design-vue'
+
+import App from '@/App.vue'
+import router from '@/router'
 
 import { useConfigStore } from '@/stores/config'
 import { useAuthStore } from '@/stores/auth'
@@ -14,12 +16,12 @@ async function bootstrap() {
 
   app.use(pinia)
   app.use(router)
+  app.use(Antd)
 
   const configStore = useConfigStore()
   const authStore = useAuthStore()
 
-  // Run in parallel for speed
-  await Promise.all([configStore.load()])
+  await Promise.all([configStore.load(), authStore.checkAuth()])
 
   app.mount('#app')
 }

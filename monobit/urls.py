@@ -1,10 +1,13 @@
 from django.contrib import admin
 from django.urls import path, re_path, include
-from monobit.views.base import index, ConfigAPIView
 from rest_framework.routers import SimpleRouter
+
+from monobit.views.base import index, ConfigAPIView
+from monobit.views.auth.views import AuthViewSet
 
 router = SimpleRouter(trailing_slash=False, use_regex_path=True)
 
+router.register("auth", AuthViewSet, basename="auth")
 
 urlpatterns = [
     path("admin/", admin.site.urls),

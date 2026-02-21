@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import axios from 'axios'
+import { authStatusAPI } from '@/api'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(null)
@@ -10,8 +10,9 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function checkAuth() {
     try {
-      const { data } = await axios.get('/api/auth/me')
-      user.value = data
+      const { data } = await authStatusAPI()
+      console.log('Data', data)
+      user.value = data.authenticatedUser
     } catch (e) {
       user.value = null
     } finally {
