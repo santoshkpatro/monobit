@@ -257,4 +257,4 @@ __screenshots__/
 *.timestamp-*-*.mjs
 
 
-monobit/static/monobit
+__vite__

@@ -24,9 +24,12 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: path.resolve(__dirname, 'monobit/static/monobit'),
-    assetsDir: '',
+    outDir: path.resolve(__dirname, '__vite__'),
+    assetsDir: 'static',
     manifest: true,
     emptyOutDir: true,
+    rollupOptions: {
+      input: path.resolve(__dirname, 'monobit/web/main.js'),
+    },
   },
 })

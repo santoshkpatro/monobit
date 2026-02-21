@@ -11,7 +11,6 @@ export const useAuthStore = defineStore('auth', () => {
   async function checkAuth() {
     try {
       const { data } = await authStatusAPI()
-      console.log('Data', data)
       user.value = data.authenticatedUser
     } catch (e) {
       user.value = null
