@@ -1,0 +1,15 @@
+{
+  "organization_name": "Monobit",
+  "organization_email": "admin@monobit.app",
+  "allow_registration": false,
+  "contact_email": "support@monobit.app",
+  "smtp_backend": "smtp",
+  "smtp_host": "",
+  "smtp_port": 587,
+  "smtp_username": "",
+  "smtp_password": "",
+  "smtp_use_tls": true,
+  "smtp_use_ssl": false,
+  "smtp_timeout": 10,
+  "default_from_email": "noreply@monobit.app"
+}
