@@ -8,11 +8,11 @@
 
       <a-form layout="vertical" :model="form" @finish="onFinish" hideRequiredMark>
         <a-form-item
-          name="email"
+          name="emailAddress"
           label="Email"
           :rules="[{ required: true, message: 'Please enter your email' }]"
         >
-          <a-input v-model:value="form.email" placeholder="Enter email">
+          <a-input v-model:value="form.emailAddress" placeholder="Enter email">
             <template #prefix>
               <user-outlined />
             </template>
@@ -40,16 +40,22 @@
 </template>
 
 <script setup>
+import { loginAPI } from '@/api'
 import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { reactive } from 'vue'
 
 const form = reactive({
-  email: '',
+  emailAddress: '',
   password: '',
 })
 
-const onFinish = () => {
-  console.log('Form submitted:', form)
+const onFinish = async () => {
+  try {
+    await loginAPI(form)
+    window.location.href = '/' // Forceful window redirection for new logged in cookie session
+  } catch (error) {
+    console.log('Error', error)
+  }
 }
 </script>
 

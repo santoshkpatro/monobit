@@ -1,20 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.utils.timezone import now
+from django.utils import timezone
 
 from monobit.models.base import BaseUUIDTimestampModel
+from monobit.models.choices import UserRoleChoices
 
 
 class UserManager(BaseUserManager):
-    def create_superuser(self, email_address, full_name, password=None):
+    def create_user(self, email_address, full_name, password=None):
         user = self.model(
             email_address=self.normalize_email(email_address),
             full_name=full_name,
-            email_address_verified_at=now,
+            email_address_verified_at=timezone.now(),
         )
         if password:
             user.set_password(password)
         user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email_address, full_name, password=None):
+        user = self.create_user(email_address, full_name, password)
+        user.is_superuser = True
+        user.save()
+
         return user
 
 
@@ -34,6 +42,9 @@ class User(BaseUUIDTimestampModel, AbstractBaseUser):
     last_login_ip = models.DateTimeField(blank=True, null=True)
 
     password_expired_at = models.DateTimeField(blank=True, null=True)
+    role = models.CharField(
+        max_length=32, choices=UserRoleChoices.choices, default=UserRoleChoices.STAFF
+    )
 
     USERNAME_FIELD = "email_address"
     REQUIRED_FIELDS = ["full_name"]

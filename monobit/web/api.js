@@ -1,6 +1,6 @@
-// http.js
 import axios from 'axios'
 import camelcaseKeys from 'camelcase-keys'
+import Cookies from 'js-cookie'
 import snakecaseKeys from 'snakecase-keys'
 
 // Deep convert to camelCase
@@ -16,6 +16,7 @@ const http = axios.create({
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
+    'X-CSRFToken': Cookies.get('csrftoken'),
   },
 })
 
@@ -41,3 +42,6 @@ http.interceptors.response.use((response) => {
 
 export const configAPI = () => http.get('/config')
 export const authStatusAPI = () => http.get('/auth/me')
+export const loginAPI = (loginData) => http.post('/auth/login', loginData)
+
+export const projectListAPI = () => http.get('/projects')

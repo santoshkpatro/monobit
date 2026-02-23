@@ -15,7 +15,6 @@ async function bootstrap() {
   const pinia = createPinia()
 
   app.use(pinia)
-  app.use(router)
   app.use(Antd)
 
   const configStore = useConfigStore()
@@ -23,6 +22,7 @@ async function bootstrap() {
 
   await Promise.all([configStore.load(), authStore.checkAuth()])
 
+  app.use(router)
   app.mount('#app')
 }
 
