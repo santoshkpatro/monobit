@@ -6,7 +6,7 @@ from django.contrib.auth import login as login_user
 
 
 from monobit.models.user import User
-from monobit.views.auth.serializers import LoginSerializer, AuthenticatedUserSerializer
+from monobit.api.auth.serializers import LoginSerializer, AuthenticatedUserSerializer
 
 
 class AuthViewSet(ViewSet):
