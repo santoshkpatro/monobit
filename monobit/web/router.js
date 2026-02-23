@@ -16,21 +16,27 @@ const router = createRouter({
       component: HomeView,
       children: [
         {
-          name: 'issues-list',
+          name: 'issue-list',
           path: 'issues',
-          component: () => import('@/views/issues/issues-list.vue'),
+          component: () => import('@/views/issues/issue-list.vue'),
           meta: { requiresLogin: true },
         },
         {
-          name: 'projects-new',
+          name: 'project-new',
           path: 'projects/new',
-          component: () => import('@/views/projects/projects-new.vue'),
+          component: () => import('@/views/projects/project-new.vue'),
           meta: { requiresLogin: true },
         },
         {
-          name: 'projects-list',
+          name: 'project-onboarding',
+          path: 'projects/:projectId/onboarding',
+          component: () => import('@/views/projects/project-onboarding.vue'),
+          meta: { requiresLogin: true },
+        },
+        {
+          name: 'project-list',
           path: 'projects',
-          component: () => import('@/views/projects/projects-list.vue'),
+          component: () => import('@/views/projects/project-list.vue'),
           meta: { requiresLogin: true },
         },
         {

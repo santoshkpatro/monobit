@@ -45,3 +45,4 @@ export const authStatusAPI = () => http.get('/auth/me')
 export const loginAPI = (loginData) => http.post('/auth/login', loginData)
 
 export const projectListAPI = () => http.get('/projects')
+export const projectCreateAPI = (newProjectData) => http.post('/projects', newProjectData)

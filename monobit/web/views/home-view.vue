@@ -88,7 +88,7 @@ const loadProjects = async () => {
   try {
     const { data } = await projectListAPI()
     if (data.length == 0) {
-      router.push({ name: 'projects-new' })
+      router.push({ name: 'project-new' })
       return
     }
     projectStore.setProjects(data)

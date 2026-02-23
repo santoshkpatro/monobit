@@ -5,7 +5,7 @@ import { onMounted } from 'vue'
 const router = useRouter()
 
 onMounted(() => {
-  router.push({ name: 'issues-list' })
+  router.push({ name: 'issue-list' })
 })
 </script>
 

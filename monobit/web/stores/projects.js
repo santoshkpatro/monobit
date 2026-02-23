@@ -8,8 +8,13 @@ export const useProjectStore = defineStore('project', () => {
     projectList.value = projectList
   }
 
+  const addProject = (newProjectData) => {
+    projectList.value.push(newProjectData)
+  }
+
   return {
     projectList,
     setProjects,
+    addProject,
   }
 })
