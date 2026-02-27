@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 
 from monobit.models.project import Project
-from monobit.views.projects.serializers import (
+from monobit.api.projects.serializers import (
     ProjectListSerializer,
     ProjectCreateSerializer,
     ProjectDetailSerializer,

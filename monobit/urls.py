@@ -2,9 +2,9 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from rest_framework.routers import SimpleRouter
 
-from monobit.views.base import index, ConfigAPIView
-from monobit.views.auth.views import AuthViewSet
-from monobit.views.projects.views import ProjectViewSet
+from monobit.api.base import index, ConfigAPIView
+from monobit.api.auth.views import AuthViewSet
+from monobit.api.projects.views import ProjectViewSet
 
 router = SimpleRouter(trailing_slash=False, use_regex_path=True)
 
