@@ -25,3 +25,10 @@ class ProjectMemberRoleChoices(models.TextChoices):
     OWNER = ("owner", "Owner")
     ADMIN = ("admin", "Admin")
     COLLABORATOR = ("collaborator", "Collaborator")
+
+
+class IssueStatusChoices(models.TextChoices):
+    OPEN = ("open", "Open")
+    RESOLVED = ("resolved", "Resolved")
+    IGNORED = ("ignored", "Ignored")
+    ARCHIVED = ("archived", "Archived")
