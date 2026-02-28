@@ -4,6 +4,7 @@ from monobit.models.config import Config
 from monobit.models.project import Project, ProjectMember, ProjectInvitation
 from monobit.models.issue import Issue, IssueFingerprint
 from monobit.models.event import Event
+from monobit.models.job import Job
 
 __all__ = [
     "BaseUUIDTimestampModel",
@@ -15,4 +16,5 @@ __all__ = [
     "Issue",
     "IssueFingerprint",
     "Event",
+    "Job",
 ]

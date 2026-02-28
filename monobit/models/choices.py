@@ -32,3 +32,10 @@ class IssueStatusChoices(models.TextChoices):
     RESOLVED = ("resolved", "Resolved")
     IGNORED = ("ignored", "Ignored")
     ARCHIVED = ("archived", "Archived")
+
+
+class JobStatus(models.TextChoices):
+    PENDING = ("pending", "Pending")
+    PROCESSING = ("processing", "Processing")
+    COMPLETED = ("completed", "Completed")
+    FAILED = ("failed", "Failed")

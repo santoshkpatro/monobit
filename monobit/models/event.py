@@ -8,8 +8,7 @@ class Event(BaseUUIDTimestampModel):
         "Project", on_delete=models.CASCADE, related_name="events"
     )
     issue = models.ForeignKey("Issue", on_delete=models.SET_NULL, null=True)
-    message = models.TextField()
-    stacktrace = models.JSONField()
+    properties = models.JSONField(default=dict)
     hash = models.CharField(max_length=128)
 
     class Meta:
