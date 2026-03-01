@@ -39,3 +39,11 @@ class JobStatus(models.TextChoices):
     PROCESSING = ("processing", "Processing")
     COMPLETED = ("completed", "Completed")
     FAILED = ("failed", "Failed")
+
+
+class WorkerInstanceStatus(models.TextChoices):
+    STARTING = ("starting", "Starting")
+    RUNNING = ("running", "Running")
+    STOPPING = ("stopping", "Stopping")
+    STOPPED = ("stopped", "Stopped")
+    CRASHED = ("crashed", "Crashed")

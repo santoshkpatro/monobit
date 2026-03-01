@@ -15,6 +15,7 @@ class Job(BaseUUIDTimestampModel):
     available_at = models.DateTimeField(auto_now_add=True)
     locked_at = models.DateTimeField(blank=True, null=True)
     locked_by = models.CharField(max_length=64, blank=True, null=True)
+    error = models.TextField(blank=True, null=True)
 
     class Meta:
         db_table = "jobs"
