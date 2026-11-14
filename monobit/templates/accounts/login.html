@@ -1,0 +1,79 @@
+
+{% extends 'base/page.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block main_content %}
+
+<div class="min-vh-100 d-flex align-items-center justify-content-center bg-light p-3">
+
+    <div class="card border-0 shadow-sm rounded-4 w-100" style="max-width: 400px;">
+        <div class="card-body p-4 p-md-5">
+
+            <div class="mb-4">
+                <h3 class="fw-semibold mb-2">Welcome back</h3>
+                <p class="text-secondary mb-0">
+                    Sign in to your account to continue.
+                </p>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger py-2 small" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">
+                        Username or email
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="username"
+                        name="username"
+                        placeholder="Enter username or email"
+                        autocomplete="username"
+                        required
+                        autofocus
+                    >
+                </div>
+
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between">
+                        <label for="password" class="form-label">
+                            Password
+                        </label>
+                        <a href="#" class="small text-decoration-none">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2">
+                    Sign in
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock main_content %}
