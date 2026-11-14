@@ -47,6 +47,7 @@ class Channel(BaseTimestampModel):
         return ":".join(sorted([str(user_a.pk), str(user_b.pk)]))
 
 
+
 class ChannelMembership(BaseTimestampModel):
     id = PrefixedPrimaryKeyField(prefix="chmb")
     channel = models.ForeignKey(
@@ -71,3 +72,10 @@ class ChannelMembership(BaseTimestampModel):
                 name="uq_channel_membership",
             ),
         ]
+
+    @classmethod
+    def is_member(cls, channel, user):
+        return cls.objects.filter(
+            channel=channel,
+            user=user,
+        ).exists()
