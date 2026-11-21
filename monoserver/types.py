@@ -1,6 +1,7 @@
 import strawberry
 import strawberry_django
 from enum import Enum
+from datetime import datetime
 
 from monoserver.models import User, Message, Channel
 
@@ -39,6 +40,7 @@ class ChannelType:
     owner_id: str
     name: str
     visibility: ChannelVisibilityEnum
+    created_at: datetime
 
 
 @strawberry_django.type(Message)
@@ -49,3 +51,4 @@ class MessageType:
     sender: UserType
     content: str
     parent_id: str
+    created_at: datetime

@@ -58,3 +58,7 @@ class User(BaseTimestampModel, AbstractBaseUser):
         user.save()
 
         return user
+
+    @property
+    def notification_channel_key(self):
+        return f"monobit:user:{self.id}"

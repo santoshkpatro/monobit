@@ -1,4 +1,5 @@
 import strawberry
+from strawberry_django.optimizer import DjangoOptimizerExtension
 
 from monoserver.queries.user_query import UserQuery
 from monoserver.queries.account_query import AccountQuery
@@ -20,4 +21,6 @@ class Mutation(AccountMutation, ChannelMutation, MessageMutation):
     pass
 
 
-schema = strawberry.Schema(query=Query, mutation=Mutation)
+schema = strawberry.Schema(
+    query=Query, mutation=Mutation, extensions=[DjangoOptimizerExtension]
+)
